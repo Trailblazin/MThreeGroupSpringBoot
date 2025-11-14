@@ -1,10 +1,13 @@
 package org.example.entities;
 
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
+
 @Entity
-public class Task {
+public class  Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,4 +27,3 @@ public class Task {
     @JoinColumn(name = "category_id")
     private Category category;
 }
-
