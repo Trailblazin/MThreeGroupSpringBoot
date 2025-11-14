@@ -1,4 +1,10 @@
 package org.example.controller;
 
-public class CategoryController {
+import org.example.repositories.CategoryRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class CategoryController
+{
+    @Autowired
+    CategoryRepository categories;
 }
