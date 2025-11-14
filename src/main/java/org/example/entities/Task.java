@@ -1,6 +1,8 @@
 package org.example.entities;
 
-Task Entity
+
+import java.time.LocalDate;
+
 @Entity
 public class Task {
 
