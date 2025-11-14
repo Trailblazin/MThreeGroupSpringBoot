@@ -6963,3 +6963,57 @@ WARNING: Unmatched cancel notification for request id 4
 2025.11.14 16:14:08 INFO  Shutting down server
 2025.11.14 16:14:08 INFO  shutting down Metals
 2025.11.14 16:14:08 INFO  Exiting server
+2025.11.14 16:14:19 INFO  Started: Metals version 1.6.3 in folders 'C:\Users\callu\mthree\MThreeGroupSpringBoot' for client Visual Studio Code 1.106.0.
+2025.11.14 16:14:19 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2025.11.14 16:14:19 INFO  no build target found for C:\Users\callu\mthree\MThreeGroupSpringBoot\src\main\java\org\example\services\TaskService.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.11.14 16:14:22 INFO  no build target found for C:\Users\callu\mthree\MThreeGroupSpringBoot\src\main\java\org\example\services\TaskService.scala. Using presentation compiler with project's scala-library version: 3.3.6
+Nov 14, 2025 4:14:22 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 3
+Nov 14, 2025 4:14:22 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 5
+2025.11.14 16:14:22 INFO  no build target found for C:\Users\callu\mthree\MThreeGroupSpringBoot\src\main\java\org\example\controller\TaskController.java. Using fallback presentation compiler.
+Nov 14, 2025 4:14:22 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 9
+2025.11.14 16:14:22 INFO  no build target found for C:\Users\callu\mthree\MThreeGroupSpringBoot\src\main\java\org\example\controller\TaskController.java. Using fallback presentation compiler.
+2025.11.14 16:14:22 INFO  no build target found for C:\Users\callu\mthree\MThreeGroupSpringBoot\src\main\java\org\example\controller\TaskController.java. Using fallback presentation compiler.
+2025.11.14 16:14:22 INFO  no build target found for C:\Users\callu\mthree\MThreeGroupSpringBoot\src\main\java\org\example\controller\TaskController.java. Using fallback presentation compiler.
+2025.11.14 16:14:23 INFO  no build target found for C:\Users\callu\mthree\MThreeGroupSpringBoot\src\main\java\org\example\controller\TaskController.java. Using fallback presentation compiler.
+2025.11.14 16:14:23 INFO  no build target found for C:\Users\callu\mthree\MThreeGroupSpringBoot\src\main\java\org\example\controller\TaskController.java. Using fallback presentation compiler.
+2025.11.14 16:14:23 INFO  no build target found for C:\Users\callu\mthree\MThreeGroupSpringBoot\src\main\java\org\example\controller\TaskController.java. Using fallback presentation compiler.
+2025.11.14 16:14:23 INFO  no build target found for C:\Users\callu\mthree\MThreeGroupSpringBoot\src\main\java\org\example\controller\TaskController.java. Using fallback presentation compiler.
+Nov 14, 2025 4:14:24 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 18
+Nov 14, 2025 4:14:24 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 19
+Nov 14, 2025 4:14:24 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 20
+Nov 14, 2025 4:14:24 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 17
+2025.11.14 16:14:24 INFO  no build target found for C:\Users\callu\mthree\MThreeGroupSpringBoot\src\main\java\org\example\controller\TaskController.java. Using fallback presentation compiler.
+2025.11.14 16:14:23 INFO  no build target found for C:\Users\callu\mthree\MThreeGroupSpringBoot\src\main\java\org\example\controller\TaskController.java. Using fallback presentation compiler.
+Nov 14, 2025 4:14:24 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 23
+2025.11.14 16:14:23 INFO  no build target found for C:\Users\callu\mthree\MThreeGroupSpringBoot\src\main\java\org\example\controller\TaskController.java. Using fallback presentation compiler.
+2025.11.14 16:14:25 INFO  no build target found for C:\Users\callu\mthree\MThreeGroupSpringBoot\src\main\java\org\example\controller\TaskController.java. Using fallback presentation compiler.
+2025.11.14 16:14:27 INFO  no build target found for C:\Users\callu\mthree\MThreeGroupSpringBoot\src\main\java\org\example\controller\TaskController.java. Using fallback presentation compiler.
+2025.11.14 16:14:27 INFO  no build target found for C:\Users\callu\mthree\MThreeGroupSpringBoot\src\main\java\org\example\controller\TaskController.java. Using fallback presentation compiler.
+2025.11.14 16:14:28 INFO  no build target found for C:\Users\callu\mthree\MThreeGroupSpringBoot\src\main\java\org\example\controller\TaskController.java. Using fallback presentation compiler.
+2025.11.14 16:14:28 INFO  no build target found for C:\Users\callu\mthree\MThreeGroupSpringBoot\src\main\java\org\example\controller\TaskController.java. Using fallback presentation compiler.
+2025.11.14 16:14:28 INFO  no build target found for C:\Users\callu\mthree\MThreeGroupSpringBoot\src\main\java\org\example\controller\TaskController.java. Using fallback presentation compiler.
+2025.11.14 16:14:29 INFO  no build target found for C:\Users\callu\mthree\MThreeGroupSpringBoot\src\main\java\org\example\controller\TaskController.java. Using fallback presentation compiler.
+2025.11.14 16:14:29 INFO  no build target found for C:\Users\callu\mthree\MThreeGroupSpringBoot\src\main\java\org\example\controller\TaskController.java. Using fallback presentation compiler.
+2025.11.14 16:14:29 INFO  no build target found for C:\Users\callu\mthree\MThreeGroupSpringBoot\src\main\java\org\example\controller\TaskController.java. Using fallback presentation compiler.
+2025.11.14 16:14:29 INFO  no build target found for C:\Users\callu\mthree\MThreeGroupSpringBoot\src\main\java\org\example\controller\TaskController.java. Using fallback presentation compiler.
+2025.11.14 16:14:30 INFO  no build target found for C:\Users\callu\mthree\MThreeGroupSpringBoot\src\main\java\org\example\controller\TaskController.java. Using fallback presentation compiler.
+2025.11.14 16:14:32 INFO  no build target found for C:\Users\callu\mthree\MThreeGroupSpringBoot\src\main\java\org\example\controller\TaskController.java. Using fallback presentation compiler.
+2025.11.14 16:14:33 INFO  no build target found for C:\Users\callu\mthree\MThreeGroupSpringBoot\src\main\java\org\example\controller\TaskController.java. Using fallback presentation compiler.
+2025.11.14 16:15:26 WARN  no build target for: C:\Users\callu\mthree\MThreeGroupSpringBoot\src\main\java\org\example\services\TaskService.scala
+2025.11.14 16:15:26 INFO  no build target found for C:\Users\callu\mthree\MThreeGroupSpringBoot\src\main\java\org\example\services\TaskService.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.11.14 16:15:26 INFO  no build target found for C:\Users\callu\mthree\MThreeGroupSpringBoot\src\main\java\org\example\services\TaskService.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.11.14 16:15:26 INFO  no build target found for C:\Users\callu\mthree\MThreeGroupSpringBoot\src\main\java\org\example\services\TaskService.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.11.14 16:15:26 INFO  no build target found for C:\Users\callu\mthree\MThreeGroupSpringBoot\src\main\java\org\example\services\TaskService.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.11.14 16:15:33 INFO  no build target found for C:\Users\callu\mthree\MThreeGroupSpringBoot\src\main\java\org\example\services\TaskService.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.11.14 16:15:41 INFO  no build target found for C:\Users\callu\mthree\MThreeGroupSpringBoot\src\main\java\org\example\controller\TaskController.java. Using fallback presentation compiler.
+2025.11.14 16:15:54 INFO  no build target found for C:\Users\callu\mthree\MThreeGroupSpringBoot\src\main\java\org\example\services\TaskService.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.11.14 16:15:55 INFO  no build target found for C:\Users\callu\mthree\MThreeGroupSpringBoot\src\main\java\org\example\services\TaskService.scala. Using presentation compiler with project's scala-library version: 3.3.6
+2025.11.14 16:15:57 INFO  no build target found for C:\Users\callu\mthree\MThreeGroupSpringBoot\src\main\java\org\example\services\TaskService.scala. Using presentation compiler with project's scala-library version: 3.3.6
