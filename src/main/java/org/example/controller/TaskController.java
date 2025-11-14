@@ -19,19 +19,14 @@ public class TaskController {
     @GetMapping("") // changed from "/tasks" to "" so endpoint is /tasks
     public ResponseEntity<List<Task>> allTasks()
     {
-        List<Task> tasks = service.findAll();
+        List<Task> tasks = service.getAll();
         return ResponseEntity.status(HttpStatus.OK).body(tasks);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Task> getTaskById(@PathVariable("id") Integer id)
-    {
-        Optional<Task> opt = service.findById(id);
-        if (opt.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
-            return new ResponseEntity<>(opt.get(), HttpStatus.OK);
-        }
+    public Task getTask(@PathVariable Long id) {
+        return service.getById(id);
+
     }
 
     @PostMapping
@@ -41,14 +36,14 @@ public class TaskController {
     }
 
     @DeleteMapping("/{id}") // added mapping
-    public ResponseEntity<Void> deleteTask(@PathVariable("id") Integer id)
+    public ResponseEntity<Void> deleteTask(@PathVariable("id") Long id)
     {
         service.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping("/{id}") // added mapping
-    public ResponseEntity<Task> updateTask(@PathVariable("id") Integer id, @RequestBody Task task)
+    public ResponseEntity<Task> updateTask(@PathVariable("id") Long id, @RequestBody Task task)
     {
         service.update(id, task);
         return new ResponseEntity<>(task, HttpStatus.OK);

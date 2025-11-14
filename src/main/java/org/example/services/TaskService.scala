@@ -5,18 +5,18 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.example.repositories.{TaskRepository, CategoryRepository}
 import org.example.entities.{Task, Category}
 import java.time.LocalDate
+import org.example.exceptions.ApiException
 import java.util
 
 @Service
 class TaskService @Autowired()(taskRepo: TaskRepository, categoryRepo: CategoryRepository) {
 
-  def getAll() = taskRepo.findAll()
+  def getAll(): util.List[Task] = taskRepo.findAll()
 
-  def getById(id: Long) =
-    taskRepo.findById(id).orElseThrow(() => new RuntimeException("Task not found"))
 
-  def getByCategory(categoryId: Long) =
-    taskRepo.findByCategoryId(categoryId)
+  def getById(id: Long): Task = {
+    taskRepo.findById(id).orElseThrow(() => new ApiException("Task not found"))
+  }
 
   // Helpers to check if a value is empty
   private def isEmptyValue(value: Any): Boolean = value match {
@@ -26,18 +26,18 @@ class TaskService @Autowired()(taskRepo: TaskRepository, categoryRepo: CategoryR
   }
 
   private def requireNonEmpty(value: Any, name: String): Unit = {
-    if (isEmptyValue(value)) throw new RuntimeException(s"Task $name cannot be empty")
+    if (isEmptyValue(value)) throw new ApiException(s"Task $name cannot be empty")
   }
 
   def create(task: Task): Task = {
 
-    
+
     requireNonEmpty(task.getTitle, "title")
     requireNonEmpty(task.getDescription, "description")
 
     requireNonEmpty(task.getDueDate, "due date")
     if (task.getDueDate.isBefore(LocalDate.now()))
-      throw new RuntimeException("Task due date cannot be in the past")
+      throw new ApiException("Task due date cannot be in the past")
 
     requireNonEmpty(task.getPriority, "priority")
     requireNonEmpty(task.isCompleted.asInstanceOf[Any], "completed")
@@ -45,11 +45,11 @@ class TaskService @Autowired()(taskRepo: TaskRepository, categoryRepo: CategoryR
 
     val cat = task.getCategory
     if (cat == null || cat.getId == null)
-      throw new RuntimeException("Category id missing")
+      throw new ApiException("Category id missing")
 
     val category = categoryRepo.findById(cat.getId)
-      .orElseThrow(() => new RuntimeException("Category not found"))
-    
+      .orElseThrow(() => new ApiException("Category not found"))
+
 
     task.setCategory(category)
 
@@ -58,7 +58,8 @@ class TaskService @Autowired()(taskRepo: TaskRepository, categoryRepo: CategoryR
 
   def update(id: Long, task: Task): Task = {
 
-    val existing = getById(id)
+    val existing: Task = taskRepo.findById(id).orElseThrow(() => new ApiException("Task not found"))
+
 
     //  keep old values if new is empty
     val title = if (isEmptyValue(task.getTitle)) existing.getTitle else task.getTitle
@@ -66,7 +67,7 @@ class TaskService @Autowired()(taskRepo: TaskRepository, categoryRepo: CategoryR
 
     val dueDate = if (isEmptyValue(task.getDueDate)) existing.getDueDate else {
       val d = task.getDueDate
-      if (d.isBefore(LocalDate.now())) throw new RuntimeException("Task due date cannot be in the past")
+      if (d.isBefore(LocalDate.now())) throw new ApiException("Task due date cannot be in the past")
       d
     }
 
@@ -78,7 +79,7 @@ class TaskService @Autowired()(taskRepo: TaskRepository, categoryRepo: CategoryR
       existing.getCategory
     } else {
       categoryRepo.findById(task.getCategory.getId)
-        .orElseThrow(() => new RuntimeException("Category not found"))
+        .orElseThrow(() => new ApiException("Category not found"))
     }
 
     existing.setTitle(title)
@@ -92,7 +93,7 @@ class TaskService @Autowired()(taskRepo: TaskRepository, categoryRepo: CategoryR
     taskRepo.save(existing)
   }
 
-  def delete(id: Long): Unit =
+  def deleteById(id: Long): Unit =
     taskRepo.deleteById(id)
 
   def deleteAll(): Unit =
