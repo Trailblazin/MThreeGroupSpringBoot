@@ -46,12 +46,14 @@ public class TaskController {
         return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
 
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTask(@PathVariable("id") Integer id)
     {
         taskRepo.deleteById(id);
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 
+    @PutMapping("/{id}")
     public ResponseEntity<Task> updateTask(@PathVariable("id") Integer id, @RequestBody Task task)
     {
         taskRepo.save(task);
