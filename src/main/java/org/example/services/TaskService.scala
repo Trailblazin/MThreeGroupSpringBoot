@@ -3,10 +3,14 @@ package org.example.services
 import org.springframework.stereotype.Service
 import org.springframework.beans.factory.annotation.Autowired
 import org.example.repositories.{TaskRepository, CategoryRepository}
+<<<<<<< HEAD
 import org.example.entities.{Task, Category}
 import java.time.LocalDate
 import org.example.exceptions.ApiException
 import java.util
+=======
+import org.example.entities.Task
+>>>>>>> 834ac00b39ea51d12930dd8d2abde1153e93a4e9
 
 @Service
 class TaskService @Autowired()(taskRepo: TaskRepository, categoryRepo: CategoryRepository) {
@@ -18,6 +22,7 @@ class TaskService @Autowired()(taskRepo: TaskRepository, categoryRepo: CategoryR
     taskRepo.findById(id).orElseThrow(() => new ApiException("Task not found"))
   }
 
+<<<<<<< HEAD
   // Helpers to check if a value is empty
   private def isEmptyValue(value: Any): Boolean = value match {
     case null => true
@@ -43,13 +48,21 @@ class TaskService @Autowired()(taskRepo: TaskRepository, categoryRepo: CategoryR
     requireNonEmpty(task.isCompleted.asInstanceOf[Any], "completed")
     requireNonEmpty(task.getCategory, "category")
 
+=======
+  def create(task: Task): Task = {
+
+>>>>>>> 834ac00b39ea51d12930dd8d2abde1153e93a4e9
     val cat = task.getCategory
     if (cat == null || cat.getId == null)
       throw new ApiException("Category id missing")
 
     val category = categoryRepo.findById(cat.getId)
+<<<<<<< HEAD
       .orElseThrow(() => new ApiException("Category not found"))
 
+=======
+      .orElseThrow(() => new RuntimeException("Category not found"))
+>>>>>>> 834ac00b39ea51d12930dd8d2abde1153e93a4e9
 
     task.setCategory(category)
 
@@ -61,10 +74,13 @@ class TaskService @Autowired()(taskRepo: TaskRepository, categoryRepo: CategoryR
     val existing: Task = taskRepo.findById(id).orElseThrow(() => new ApiException("Task not found"))
 
 
-    //  keep old values if new is empty
-    val title = if (isEmptyValue(task.getTitle)) existing.getTitle else task.getTitle
-    val description = if (isEmptyValue(task.getDescription)) existing.getDescription else task.getDescription
+    existing.setTitle(task.getTitle)
+    existing.setDescription(task.getDescription)
+    existing.setPriority(task.getPriority)
+    existing.setCompleted(task.isCompleted)
+    existing.setDueDate(task.getDueDate)
 
+<<<<<<< HEAD
     val dueDate = if (isEmptyValue(task.getDueDate)) existing.getDueDate else {
       val d = task.getDueDate
       if (d.isBefore(LocalDate.now())) throw new ApiException("Task due date cannot be in the past")
@@ -87,8 +103,12 @@ class TaskService @Autowired()(taskRepo: TaskRepository, categoryRepo: CategoryR
     existing.setDueDate(dueDate)
     existing.setPriority(priority)
     existing.setCompleted(completed)
+=======
+    val category = categoryRepo.findById(task.getCategory.getId)
+      .orElseThrow(() => new RuntimeException("Category not found"))
+
+>>>>>>> 834ac00b39ea51d12930dd8d2abde1153e93a4e9
     existing.setCategory(category)
-    existing.setId(id)
 
     taskRepo.save(existing)
   }
