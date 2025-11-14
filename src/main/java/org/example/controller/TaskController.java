@@ -1,13 +1,9 @@
 package org.example.controller;
 
 import org.example.entities.Task;
-import org.example.repositories.CategoryRepository;
-import org.example.repositories.TaskRepository;
+import org.example.services.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.http.HttpStatus;
 
 import java.util.List;
 
@@ -16,48 +12,42 @@ import java.util.List;
 public class TaskController {
 
     @Autowired
-    private TaskRepository taskRepo;
+    private TaskService service;
 
-    @GetMapping("/tasks")
-    public ResponseEntity<List<Task>> allTasks()
-    {
-        List<Task> tasks = taskRepo.findAll();
-        return ResponseEntity.status(HttpStatus.OK).body(tasks);
+    @GetMapping
+    public List<Task> getAllTasks() {
+        return service.getAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Task> getTaskById(@PathVariable("id") Integer id)
-    {
-        Task task = (Task) taskRepo.findById(id).orElse(null);
-
-        if (task == null) {
-            return new ResponseEntity<Task>(task, HttpStatus.NOT_FOUND);
-        }
-        else
-        {
-            return new ResponseEntity<Task>(task, HttpStatus.OK);
-        }
+    public Task getTask(@PathVariable Long id) {
+        return service.getById(id);
     }
 
-    @PostMapping("/tasks")
-    public ResponseEntity<Void> addNewTask(@RequestBody Task task)
-    {
-        taskRepo.save(task);
-        return new ResponseEntity<Void>(HttpStatus.CREATED);
+    @GetMapping("/category/{categoryId}")
+    public List<Task> getTasksByCategory(@PathVariable Long categoryId) {
+        return service.getByCategory(categoryId);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteTask(@PathVariable("id") Integer id)
-    {
-        taskRepo.deleteById(id);
-        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+    @PostMapping
+    public Task createTask(@RequestBody Task task) {
+        return service.create(task);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Task> updateTask(@PathVariable("id") Integer id, @RequestBody Task task)
-    {
-        taskRepo.save(task);
-        return new ResponseEntity<Task>(task, HttpStatus.OK);
+    public Task updateTask(@PathVariable Long id, @RequestBody Task task) {
+        return service.update(id, task);
     }
 
+    @DeleteMapping("/{id}")
+    public String deleteTask(@PathVariable Long id) {
+        service.delete(id);
+        return "Task deleted";
+    }
+
+    @DeleteMapping
+    public String deleteAll() {
+        service.deleteAll();
+        return "All tasks deleted";
+    }
 }
