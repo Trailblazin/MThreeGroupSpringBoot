@@ -3,9 +3,7 @@ package org.example.services
 import org.springframework.stereotype.Service
 import org.springframework.beans.factory.annotation.Autowired
 import org.example.repositories.{TaskRepository, CategoryRepository}
-import org.example.entities.{Task, Category}
-import java.time.LocalDate
-import java.util
+import org.example.entities.Task
 
 @Service
 class TaskService @Autowired()(taskRepo: TaskRepository, categoryRepo: CategoryRepository) {
@@ -18,30 +16,7 @@ class TaskService @Autowired()(taskRepo: TaskRepository, categoryRepo: CategoryR
   def getByCategory(categoryId: Long) =
     taskRepo.findByCategoryId(categoryId)
 
-  // Helpers to check if a value is empty
-  private def isEmptyValue(value: Any): Boolean = value match {
-    case null => true
-    case s: String => s.trim.isEmpty
-    case _ =>false
-  }
-
-  private def requireNonEmpty(value: Any, name: String): Unit = {
-    if (isEmptyValue(value)) throw new RuntimeException(s"Task $name cannot be empty")
-  }
-
   def create(task: Task): Task = {
-
-    
-    requireNonEmpty(task.getTitle, "title")
-    requireNonEmpty(task.getDescription, "description")
-
-    requireNonEmpty(task.getDueDate, "due date")
-    if (task.getDueDate.isBefore(LocalDate.now()))
-      throw new RuntimeException("Task due date cannot be in the past")
-
-    requireNonEmpty(task.getPriority, "priority")
-    requireNonEmpty(task.isCompleted.asInstanceOf[Any], "completed")
-    requireNonEmpty(task.getCategory, "category")
 
     val cat = task.getCategory
     if (cat == null || cat.getId == null)
@@ -49,7 +24,6 @@ class TaskService @Autowired()(taskRepo: TaskRepository, categoryRepo: CategoryR
 
     val category = categoryRepo.findById(cat.getId)
       .orElseThrow(() => new RuntimeException("Category not found"))
-    
 
     task.setCategory(category)
 
@@ -60,34 +34,16 @@ class TaskService @Autowired()(taskRepo: TaskRepository, categoryRepo: CategoryR
 
     val existing = getById(id)
 
-    //  keep old values if new is empty
-    val title = if (isEmptyValue(task.getTitle)) existing.getTitle else task.getTitle
-    val description = if (isEmptyValue(task.getDescription)) existing.getDescription else task.getDescription
+    existing.setTitle(task.getTitle)
+    existing.setDescription(task.getDescription)
+    existing.setPriority(task.getPriority)
+    existing.setCompleted(task.isCompleted)
+    existing.setDueDate(task.getDueDate)
 
-    val dueDate = if (isEmptyValue(task.getDueDate)) existing.getDueDate else {
-      val d = task.getDueDate
-      if (d.isBefore(LocalDate.now())) throw new RuntimeException("Task due date cannot be in the past")
-      d
-    }
+    val category = categoryRepo.findById(task.getCategory.getId)
+      .orElseThrow(() => new RuntimeException("Category not found"))
 
-    val priority = if (isEmptyValue(task.getPriority)) existing.getPriority else task.getPriority
-    val completed = if (isEmptyValue(task.isCompleted.asInstanceOf[Any])) existing.isCompleted else task.isCompleted
-
-    // category: if incoming category or id is empty, keep existing; otherwise validate and set
-    val category = if (isEmptyValue(task.getCategory) || isEmptyValue(task.getCategory.getId)) {
-      existing.getCategory
-    } else {
-      categoryRepo.findById(task.getCategory.getId)
-        .orElseThrow(() => new RuntimeException("Category not found"))
-    }
-
-    existing.setTitle(title)
-    existing.setDescription(description)
-    existing.setDueDate(dueDate)
-    existing.setPriority(priority)
-    existing.setCompleted(completed)
     existing.setCategory(category)
-    existing.setId(id)
 
     taskRepo.save(existing)
   }
